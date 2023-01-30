@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to ABC Admin Control Panel</title>
+	<link rel="stylesheet"
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+		  crossorigin="anonymous">
+</head>
+<body>
+	<div align="center">
+		<h2>Welcome to MyGrowth API Challenge Admin Control Panel</h2>
+		<p>Your username is: <b>[[${#request.userPrincipal.principal.username}]]</b></p>
+        <form th:action="@{/admin/logout}" method="post" >
+			<button type="submit" value="Logout" class="btn btn-success btn-lg float-right">Logout</button>
+        </form>
+	</div>
+
+	<div>
+		<h1>List of Users</h1>
+	</div>
+
+	<div>
+		<table class="table table-striped table-bordered">
+			<thead class="thead-dark">
+			<tr>
+				<th>User ID</th>
+				<th>Username</th>
+				<th>E-mail</th>
+				<th>Full Name</th>
+				<th>Enabled</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="user: ${listUsers}">
+				<td th:text="${user.id}">User ID</td>
+				<td th:text="${user.username}">Username</td>
+				<td th:text="${user.email}">E-mail</td>
+				<td th:text="${user.fullName}">Full Name</td>
+				<td th:text="${user.enabled}">Enabled</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+</body>
+</html>
