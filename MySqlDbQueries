@@ -1,0 +1,29 @@
+CREATE DATABASE `logindb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+CREATE TABLE `roles` (
+  `role_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(60) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
+  `full_name` varchar(45) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `enabled` tinyint DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `users_roles` (
+  `user_id` int NOT NULL,
+  `role_id` int NOT NULL,
+  KEY `user_fk_idx` (`user_id`),
+  KEY `role_fk_idx` (`role_id`),
+  CONSTRAINT `role_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
+  CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

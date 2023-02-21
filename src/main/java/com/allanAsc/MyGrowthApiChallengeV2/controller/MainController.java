@@ -1,9 +1,12 @@
 package com.allanAsc.MyGrowthApiChallengeV2.controller;
 
+import com.allanAsc.MyGrowthApiChallengeV2.dto.UserDto;
 import com.allanAsc.MyGrowthApiChallengeV2.user.Role;
 import com.allanAsc.MyGrowthApiChallengeV2.user.RoleRepository;
 import com.allanAsc.MyGrowthApiChallengeV2.user.User;
 import com.allanAsc.MyGrowthApiChallengeV2.user.UserRepository;
+import com.allanAsc.MyGrowthApiChallengeV2.util.Converter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,9 @@ public class MainController {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+
+    @Autowired
+    Converter converter;
 
     public MainController(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
@@ -59,7 +65,8 @@ public class MainController {
     }
 
     @PostMapping("/process_register")
-    public String processRegister(User user) {
+    public String processRegister(UserDto userDto) {
+        User user = converter.convertToUserEntity(userDto);
         Role role = roleRepository.findById(1).orElse(null);
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
