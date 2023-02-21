@@ -13,7 +13,7 @@
     <h2>Welcome to My API Spotify Application</h2>
     <p>Welcome Back <b>[[${#request.userPrincipal.principal.username}]]!</b></p>
     <form th:action="@{/user/logout}" method="post">
-        <input type="submit" value="Logout"/>
+        <button type="submit" value="Logout" class="btn btn-primary btn-sm mb-3">Logout</button>
     </form>
 </div>
 </body>

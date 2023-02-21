@@ -33,7 +33,6 @@ public class User {
 
 	private String username;
 	private String email;
-	//@Column(name = "full_name")
 	private String fullName;
 	private String password;
 	private boolean enabled;
