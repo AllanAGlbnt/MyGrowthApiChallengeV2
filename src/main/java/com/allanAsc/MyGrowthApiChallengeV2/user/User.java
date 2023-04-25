@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,17 +21,18 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "users")
+//@Table(name = "users")
 @Entity
 public class User {
 
 	@Id
-	@Column(name = "user_id")
+	//@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String username;
 	private String email;
+	@Column(name = "FULLNAME")
 	private String fullName;
 	private String password;
 	private boolean enabled;

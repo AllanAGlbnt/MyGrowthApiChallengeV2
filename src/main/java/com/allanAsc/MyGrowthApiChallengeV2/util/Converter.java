@@ -14,8 +14,8 @@ public class Converter {
     @Autowired
     ModelMapper modelMapper;
 
-    public UserDto convertToUserDto(User user) {
-        return modelMapper.map(user, UserDto.class);
+    public UserDto convertToUserDto(User User) {
+        return modelMapper.map(User, UserDto.class);
     }
 
     public User convertToUserEntity(UserDto userDto){
